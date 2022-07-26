@@ -1,0 +1,12 @@
+node_modules
+yarn.lock
+/package-lock.json
+.next
+/dist
+/colors
+/index.js
+.idea
+.DS_Store
+*.tgz
+/coverage
+/node_modules

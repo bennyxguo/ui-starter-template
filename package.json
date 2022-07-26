@@ -1,0 +1,66 @@
+{
+  "name": "@bennyxguo/ui-starter-template",
+  "version": "1.0.0",
+  "description": "A template to create a UI CSS library for TailwindCSS",
+  "license": "MIT",
+  "homepage": "https://bennyxguo.me",
+  "main": "src/index.js",
+  "typings": "src/index.js",
+  "files": [
+    "src/lib/**/*.js",
+    "src/colors/**/*.js",
+    "dist/*.js",
+    "dist/{themes,themed,skeleton,full}.css",
+    "!dist/*.rtl.css",
+    "src/index.js"
+  ],
+  "browserslist": [
+    "> 7%"
+  ],
+  "scripts": {
+    "precomponent": "postcss --config src/components src/components/**/*.css --base src --dir dist",
+    "component:merge-skeleton": "cat dist/components/skeleton/*.css > dist/skeleton.css",
+    "component:merge-themed": "cat dist/components/skeleton/*.css dist/components/themed/*.css > dist/themed.css",
+    "component": "npm run component:merge-skeleton && npm run component:merge-themed",
+    "postcomponent": "prejss-cli dist/{skeleton,themed}.css --format commonjs",
+    "prebase": "postcss --config src/base src/base/*.css --base src --dir dist",
+    "base": "cat dist/base/*.css > dist/base.css",
+    "postbase": "prejss-cli dist/base.css --format commonjs",
+    "preutilities:global": "postcss --config src/utilities/global src/utilities/global/*.css --base src --dir dist",
+    "utilities:global": "cat dist/utilities/global/*.css > dist/utilities.css",
+    "postutilities:global": "prejss-cli dist/utilities.css --format commonjs",
+    "preutilities:skeleton": "postcss --config src/utilities/skeleton src/utilities/skeleton/*.css --base src --dir dist",
+    "utilities:skeleton": "cat dist/utilities/skeleton/*.css > dist/utilities-skeleton.css",
+    "postutilities:skeleton": "prejss-cli dist/utilities-skeleton.css --format commonjs",
+    "preutilities:themed": "postcss --config src/utilities/themed src/utilities/themed/*.css --base src --dir dist",
+    "utilities:themed": "cat dist/utilities/themed/*.css > dist/utilities-themed.css",
+    "postutilities:themed": "prejss-cli dist/utilities-themed.css --format commonjs",
+    "themes": "postcss src/themes/index.css -o dist/themes.css --config src/themes",
+    "full": "postcss src/full/index.css -o dist/full.css --config src/full",
+    "postfull": "parcel-css --minify --nesting --bundle --targets '> 7%' dist/full.css -o dist/full.css",
+    "add": "touch src/components/skeleton/$npm_config_name.css && touch src/components/themed/$npm_config_name.css",
+    "postadd": "open src/components/skeleton/$npm_config_name.css && open src/components/themed/$npm_config_name.css",
+    "build": "npm run base && npm run utilities:global && npm run utilities:themed && npm run utilities:skeleton && npm run component"
+  },
+  "devDependencies": {
+    "@parcel/css-cli": "^1.12.0",
+    "autoprefixer": "^10.4.7",
+    "c8": "^7.11.3",
+    "color-contrast-checker": "^2.1.0",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^10.0.0",
+    "postcss-import": "^14.1.0",
+    "postcss-nested": "^5.0.6",
+    "prejss-cli": "^0.3.3"
+  },
+  "dependencies": {
+    "color": "^4.2.3",
+    "css-selector-tokenizer": "^0.8.0",
+    "postcss-js": "^4.0.0",
+    "tailwindcss": "^3.1.6"
+  },
+  "peerDependencies": {
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.1.6"
+  }
+}
