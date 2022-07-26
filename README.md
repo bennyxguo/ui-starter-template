@@ -15,14 +15,14 @@
 ## 📀 Install now!
 
 ```bash
-npm i ampui
+npm i exampleui
 ```
 
 Then add ampUI to your `tailwind.config.js`:
 
 ```js
 module.exports = {
-  plugins: [require("ampui")],
+  plugins: [require("exampleui")],
 };
 ```
 
